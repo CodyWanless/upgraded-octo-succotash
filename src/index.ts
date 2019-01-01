@@ -1,5 +1,10 @@
-import { Task } from './domain/task';
+import express from 'express';
+import router from './app/router';
 
-const t = Task.create('flerp derp', 'flerp', 1, new Date());
-console.log(t.description);
-console.log(t);
+const app = express();
+
+app.use(router());
+
+app.listen(3000, () => {
+    console.log('app started on 3000');
+});
