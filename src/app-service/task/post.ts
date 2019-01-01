@@ -1,13 +1,17 @@
 import { Task } from '../../domain/task';
+import TaskRepository from '../../infrastructure/repository/task';
 
 export default () => {
-    const execute = (body: any) => Promise
-        .resolve()
-        .then(() => {
-            const task = Task.create(body.title, body.description, body.priority, body.dueDate);
-            return Promise.resolve();
-        })
-        .catch((e) => { throw new Error(e); });
+    const execute = async (body: any): Promise<Task> => {
+        const task = Task.create(body.title,
+            body.description,
+            body.priority,
+            body.dueDate);
+
+        await TaskRepository.add(task);
+
+        return task;
+    };
 
     return execute;
 };
