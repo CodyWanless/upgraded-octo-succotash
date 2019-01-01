@@ -1,3 +1,4 @@
+import { Priority } from './priority';
 import Task from './Task';
 
-export { Task };
+export { Task, Priority };

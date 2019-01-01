@@ -1,4 +1,4 @@
-import uuidv1 from 'uuid';
+import guid from 'uuid';
 import { Priority } from './priority';
 
 export default class Task {
@@ -6,7 +6,7 @@ export default class Task {
         description: string,
         priority: Priority,
         dueDate: Date): Task {
-        return new Task(uuidv1(), title, description, priority, dueDate);
+        return new Task(guid(), title, description, priority, dueDate);
     }
 
     public static rehydrate(id: string,
@@ -35,19 +35,19 @@ export default class Task {
         this._dueDate = dueDate;
     }
 
-    get title(): string {
+    public get title(): string {
         return this._title;
     }
 
-    get description(): string {
+    public get description(): string {
         return this._description;
     }
 
-    get priority(): Priority {
+    public get priority(): Priority {
         return this._priority;
     }
 
-    get dueDate(): Date | null {
+    public get dueDate(): Date | null {
         return this._dueDate;
     }
 }
