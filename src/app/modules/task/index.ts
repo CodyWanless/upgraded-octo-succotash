@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { getById, post } from '../../../app-service/task';
+import { getAll, getById, post } from '../../../app-service/task';
 
 export default () => {
     const router = Router();
 
     const postUseCase = post();
     const getByIdUseCase = getById();
+    const getAllUseCase = getAll();
 
     router.get('/:id', async (req, res) => {
         try {
@@ -13,6 +14,16 @@ export default () => {
             res.status(200).json(foundTask);
         } catch (err) {
             res.status(404).json(err.message);
+        }
+    });
+
+    router.get('/', async (req, res) => {
+        try {
+            const tasks = await getAllUseCase();
+
+            res.status(200).json(tasks);
+        } catch (err) {
+            res.status(400).json(err.message);
         }
     });
 

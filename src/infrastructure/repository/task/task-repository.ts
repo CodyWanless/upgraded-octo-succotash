@@ -31,4 +31,10 @@ export default class TaskRepository {
 
         throw new Error('Task not found');
     }
+
+    public getAll(): Promise<Task[]> {
+        const taskIterator = this.repo.getAll();
+
+        return Promise.resolve(Array.from(taskIterator));
+    }
 }
